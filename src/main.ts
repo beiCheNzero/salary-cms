@@ -2,6 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+// 它的作用就是让HTML元素更好的实现跨浏览器一致性
+import 'normalize.css'
+import './assets/css/index.less'
+
+import ljlRequest from './service'
 
 // 引入Elmessage和Elloading的css样式文件
 import 'element-plus/theme-chalk/el-loading.css'
@@ -22,3 +27,27 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 app.use(store).use(router).mount('#app')
+
+// console.log(process.env.VUE_APP_BASE_URL)
+
+// 这里的请求又所有请求的拦截，和实例请求的拦截
+ljlRequest.request({
+  url: '/user/user/1001',
+  method: 'GET'
+})
+
+// 这里的请求还包含自己的请求的拦截
+// ljlRequest.request({
+//   url: '/user/user/1001',
+//   method: 'GET',
+//   interceptors: {
+//     requestInterceptor(config) {
+//       console.log('单个请求的请求拦截')
+//       return config
+//     },
+//     responseInterceptor(config) {
+//       console.log('当前请求的响应拦截')
+//       return config
+//     }
+//   }
+// })
