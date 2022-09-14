@@ -6,7 +6,8 @@ import store from './store'
 import 'normalize.css'
 import './assets/css/index.less'
 
-import ljlRequest from './service'
+// 调试请求
+// import ljlRequest from './service'
 
 // 引入Elmessage和Elloading的css样式文件
 import 'element-plus/theme-chalk/el-loading.css'
@@ -31,10 +32,16 @@ app.use(store).use(router).mount('#app')
 // console.log(process.env.VUE_APP_BASE_URL)
 
 // 这里的请求又所有请求的拦截，和实例请求的拦截
-ljlRequest.request({
-  url: '/user/user/1001',
-  method: 'GET'
-})
+// ljlRequest
+//   .get<any>({
+//     url: '/user/user/1001',
+//     method: 'GET'
+//   })
+//   .then((res) => {
+//     console.log(res.data[0])
+//     console.log(res.code)
+//     console.log(res.msg)
+//   })
 
 // 这里的请求还包含自己的请求的拦截
 // ljlRequest.request({

@@ -1,10 +1,11 @@
 <template>
-  <nav>
-    <h2>{{ $store.state.name }}</h2>
-    <router-link to="/login">Login</router-link>
-    <router-link to="/main">Main</router-link>
+  <nav class="app">
     <router-view />
   </nav>
 </template>
 
-<style lang="less"></style>
+<style lang="less">
+.app {
+  height: 100%;
+}
+</style>

@@ -1,5 +1,4 @@
 // service统一出口
-import axios from 'axios'
 import LJLRequest from './request'
 import { API_BASE_URL, TIME_OUT } from './request/config'
 
@@ -16,14 +15,15 @@ const ljlRequest = new LJLRequest({
       console.log('请求成功的拦截器')
       // 携带token的拦截
       // const token = localCache.getCatch('token')
-      // if (token) {
-      //   /*
-      //    * 解决无效token的问题
-      //    * 给token授权访问api接口的权限
-      //    * Authorization(授权)
-      //    */
-      //   config.headers.Authorization = `Bearer ${token}`
-      // }
+      const token = ''
+      if (token) {
+        /*
+         * 解决无效token的问题
+         * 给token授权访问api接口的权限
+         * Authorization(授权)
+         */
+        config.headers!.Authorization = `Bearer ${token}`
+      }
       return config
     },
     requestInterceptorCatch: (error) => {
@@ -42,7 +42,7 @@ const ljlRequest = new LJLRequest({
 export default ljlRequest
 
 // axios.get('http://159.75.136.33:3223/user/user/1001').then((res) => {
-//   console.log(res.data)
+//   console.log(res)
 // })
 
 // axios.interceptors.request.use((config) => {

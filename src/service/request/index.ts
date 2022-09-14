@@ -60,7 +60,6 @@ class LJLRequest {
         return err
       }
     )
-
     this.instance.interceptors.response.use(
       (res) => {
         console.log('所有的实例都有的：响应成功拦截')
@@ -68,14 +67,14 @@ class LJLRequest {
         // 在请求完成之后，响应的时候移除loading效果
         // 移除loading, 在有loading显示的时候才会关闭loading
         if (this.showLoading) {
-          this.isLoading!.close()
+          this.isLoading?.close()
         }
 
         // 判断返回数据是否正确
         const data = res.data
         if (data.code === -1) {
           console.log('请求失败,错误信息')
-        } else if (data.returnCode === '') {
+        } else if (data.code === '') {
           console.log('return为空')
         } else {
           return res.data
@@ -117,7 +116,7 @@ class LJLRequest {
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res)
           }
-          // console.log(res)
+          console.log(res)
 
           // 2.将showLoading的值设置会初始值也就是true，这样不会影响下一个请求的loading显示
           // 这里如果不设置的话，在第一次请求会有加载特效
@@ -146,6 +145,27 @@ class LJLRequest {
     return this.request<T>({
       ...config,
       method: 'GET'
+    })
+  }
+
+  post<T = any>(config: LJLRequestConfig<T>): Promise<T> {
+    return this.request<T>({
+      ...config,
+      method: 'POST'
+    })
+  }
+
+  delete<T = any>(config: LJLRequestConfig<T>): Promise<T> {
+    return this.request<T>({
+      ...config,
+      method: 'delete'
+    })
+  }
+
+  patch<T = any>(config: LJLRequestConfig<T>): Promise<T> {
+    return this.request<T>({
+      ...config,
+      method: 'patch'
     })
   }
 }
