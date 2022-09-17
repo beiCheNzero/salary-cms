@@ -9,7 +9,7 @@
             <span>账号登录</span>
           </span>
         </template>
-        <loginAccount />
+        <loginAccount ref="accountRef" />
       </el-tab-pane>
       <el-tab-pane>
         <template #label>
@@ -21,11 +21,17 @@
         手机登录
       </el-tab-pane>
     </el-tabs>
+    <div class="account-control">
+      <el-checkbox v-model="isKeepPassword">记住密码</el-checkbox>
+      <el-link type="primary">忘记密码</el-link>
+    </div>
+
+    <el-button type="success" class="login-button" @click="handleLoginClick">立即登录</el-button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import loginAccount from './login-account.vue'
 
 export default defineComponent({
@@ -33,7 +39,20 @@ export default defineComponent({
     loginAccount
   },
   setup() {
-    return
+    const isKeepPassword = ref(true)
+    // 通过ref绑定组件并获取里面的函数进行打印
+    const accountRef = ref<InstanceType<typeof loginAccount>>()
+
+    const handleLoginClick = () => {
+      console.log('点击按钮')
+      // 因为我们在accountRef中没有传入值，所以他推断我们可以是undefined的，所以添加可选链
+      accountRef.value?.loginAction(isKeepPassword.value)
+    }
+    return {
+      isKeepPassword,
+      handleLoginClick,
+      accountRef
+    }
   }
 })
 </script>
@@ -44,6 +63,16 @@ export default defineComponent({
 
   .title {
     text-align: center;
+  }
+
+  .account-control {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .login-button {
+    width: 100%;
+    margin-top: 10px;
   }
 }
 </style>
