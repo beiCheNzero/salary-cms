@@ -44,7 +44,7 @@ class LJLRequest {
      */
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有的实例都有的：请求成功拦截')
+        // console.log('所有的实例都有的：请求成功拦截')
         // 判断是否显示loading请求加载界面
         if (this.showLoading) {
           this.isLoading = ElLoading.service({
@@ -62,7 +62,7 @@ class LJLRequest {
     )
     this.instance.interceptors.response.use(
       (res) => {
-        console.log('所有的实例都有的：响应成功拦截')
+        // console.log('所有的实例都有的：响应成功拦截')
 
         // 在请求完成之后，响应的时候移除loading效果
         // 移除loading, 在有loading显示的时候才会关闭loading
@@ -113,10 +113,10 @@ class LJLRequest {
         .request<any, T>(config)
         .then((res) => {
           // 1.单个请求对数据的处理
+          // console.log('单个请求的拦截器')
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res)
           }
-          console.log(res)
 
           // 2.将showLoading的值设置会初始值也就是true，这样不会影响下一个请求的loading显示
           // 这里如果不设置的话，在第一次请求会有加载特效

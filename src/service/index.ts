@@ -1,6 +1,7 @@
 // service统一出口
 import LJLRequest from './request'
 import { API_BASE_URL, TIME_OUT } from './request/config'
+import localCache from '@/utils/cache'
 
 const ljlRequest = new LJLRequest({
   baseURL: API_BASE_URL,
@@ -12,10 +13,9 @@ const ljlRequest = new LJLRequest({
      */
     // 请求成功的拦截器
     requestInterceptor: (config) => {
-      console.log('请求成功的拦截器')
+      // console.log('请求成功的拦截器', process.env.VUE_APP_BASE_URL)
       // 携带token的拦截
-      // const token = localCache.getCatch('token')
-      const token = ''
+      const token = localCache.getCache('token')
       if (token) {
         /*
          * 解决无效token的问题
@@ -31,7 +31,7 @@ const ljlRequest = new LJLRequest({
     },
     // 响应成功的拦截器
     responseInterceptor: (res) => {
-      console.log('响应成功的拦截器')
+      // console.log('响应成功的拦截器')
       return res
     },
     responseInterceptorCatch: (error) => {

@@ -5,6 +5,7 @@ import store from './store'
 // 它的作用就是让HTML元素更好的实现跨浏览器一致性
 import 'normalize.css'
 import './assets/css/index.less'
+import { setupStore } from './store'
 
 // 调试请求
 // import ljlRequest from './service'
@@ -26,7 +27,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key + 'Icon', component)
   }
 }
-
+setupStore()
 app.use(store).use(router).mount('#app')
 
 // console.log(process.env.VUE_APP_BASE_URL)

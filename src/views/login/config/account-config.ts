@@ -3,7 +3,7 @@
  * el-form-item中的prop要与el-input中v-model绑定的值一致，否则不会校验
  */
 export const rules = {
-  account: [
+  emp_name: [
     {
       required: true,
       message: '用户名位必传内容',
@@ -15,7 +15,7 @@ export const rules = {
       trigger: 'blur'
     }
   ],
-  password: [
+  emp_password: [
     {
       required: true,
       message: '密码位必传内容',

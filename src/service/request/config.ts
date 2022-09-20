@@ -20,7 +20,7 @@
 
 // if (process.env.NODE_ENV === 'development') {
 //   // BASE_URL = 'http://123.207.32.32:8000/'
-//   API_BASE_URL = 'http://159.75.136.33:3223'
+//   API_BASE_URL = '/api'
 // } else if (process.env.NODE_ENV === 'production') {
 //   API_BASE_URL = 'http://123.207.32.32:8000/'
 // } else {

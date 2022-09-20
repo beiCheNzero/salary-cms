@@ -44,7 +44,6 @@ export default defineComponent({
     const accountRef = ref<InstanceType<typeof loginAccount>>()
 
     const handleLoginClick = () => {
-      console.log('点击按钮')
       // 因为我们在accountRef中没有传入值，所以他推断我们可以是undefined的，所以添加可选链
       accountRef.value?.loginAction(isKeepPassword.value)
     }

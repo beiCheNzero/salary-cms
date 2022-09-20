@@ -1,13 +1,28 @@
-import { createStore } from 'vuex'
+import { createStore, Store, useStore as userVuexStore } from 'vuex'
+// 导出是loginModule,在这里命名模块为login,更简洁
+import login from './login/login'
+import type { IRootState, IStore } from './types'
 
-export default createStore({
+const store = createStore<IRootState>({
   state: () => {
     return {
-      name: 'beichen'
+      token: ''
     }
   },
   getters: {},
   mutations: {},
   actions: {},
-  modules: {}
+  modules: {
+    login
+  }
 })
+
+export function setupStore() {
+  store.dispatch('login/loadLocalLogin')
+}
+
+export function useStore(): Store<IStore> {
+  return userVuexStore()
+}
+
+export default store
