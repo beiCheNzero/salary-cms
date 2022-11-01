@@ -1,8 +1,8 @@
 /* eslint-disable */
 declare module '*.vue' {
-  import type { DefineComponent } from 'vue'
-  const component: DefineComponent<{}, {}, any>
-  export default component
+  import { defineComponent } from 'vue'
+  const Component: ReturnType<typeof defineComponent>
+  export default Component
 }
 declare let $filters: any
 // declare let $store: any
