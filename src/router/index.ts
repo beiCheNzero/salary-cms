@@ -13,7 +13,6 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    // 这里是懒加载的方式， () => import('url')
     component: LOGIN
   },
   {
