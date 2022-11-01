@@ -37,7 +37,7 @@ const router = createRouter({
 router.beforeEach((to) => {
   // 不是登录页的时候
   if (to.path !== '/login') {
-    const token = localCatch.getCatch('token')
+    const token = localCatch.getCache('token')
     if (!token) {
       return '/login'
     }
