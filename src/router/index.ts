@@ -11,7 +11,6 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    // 这里是懒加载的方式， () => import('url')
     component: () => import('@/views/login/login.vue')
   },
   {
@@ -29,8 +28,8 @@ const routes: RouteRecordRaw[] = [
 
 const router = createRouter({
   // history: createWebHistory(process.env.BASE_URL),
-  history: createWebHistory(),
-  routes
+  routes,
+  history: createWebHistory()
 })
 
 // 路由守卫
