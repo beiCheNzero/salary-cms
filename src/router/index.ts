@@ -2,6 +2,8 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import LocalCache from '@/utils/cache'
 import { firstMenu } from '@/utils/map-menus'
 import type { RouteRecordRaw } from 'vue-router'
+const LOGIN = () => import('../../src/views/login/login.vue')
+const MAIN = () => import('../../src/views/main/main.vue')
 
 const routes: RouteRecordRaw[] = [
   {
@@ -12,12 +14,12 @@ const routes: RouteRecordRaw[] = [
     path: '/login',
     name: 'login',
     // 这里是懒加载的方式， () => import('url')
-    component: () => import('@/views/login/login.vue')
+    component: LOGIN
   },
   {
     path: '/main',
     name: 'main',
-    component: () => import('@/views/main/main.vue')
+    component: MAIN
   },
   {
     path: '/:pathMatch(.*)*',
