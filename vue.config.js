@@ -1,17 +1,13 @@
 const path = require('path')
-const {
-  defineConfig
-} = require('@vue/cli-service')
+const { defineConfig } = require('@vue/cli-service')
 const AutoImport = require('unplugin-auto-import/webpack')
 // 引入自动引入插件
 const Components = require('unplugin-vue-components/webpack')
-const {
-  ElementPlusResolver
-} = require('unplugin-vue-components/resolvers')
+const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 module.exports = defineConfig({
-  lintOnSave: false,
-  transpileDependencies: true,
+  // lintOnSave: false,
+  // transpileDependencies: true,
   // outputDir: './build',
   /*
    * 配置浏览器跨域问题
@@ -31,7 +27,7 @@ module.exports = defineConfig({
   configureWebpack: {
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'), // 这个应该是自动配好的
+        // '@': path.resolve(__dirname, 'src'), // 这个应该是自动配好的
         components: '@/components'
       }
     },
@@ -47,7 +43,7 @@ module.exports = defineConfig({
       }),
       Components({
         resolvers: [ElementPlusResolver()]
-      }),
+      })
     ]
   }
 })
