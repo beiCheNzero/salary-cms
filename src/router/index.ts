@@ -1,7 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-// type表示这里引入的是一个类型，而不是函数或方法
 import type { RouteRecordRaw } from 'vue-router'
-
 import localCatch from '@/utils/cache'
 import { firstMenu } from '@/utils/map-menus'
 
