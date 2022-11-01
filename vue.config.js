@@ -19,7 +19,8 @@ module.exports = defineConfig({
         pathRewrite: {
           '^/api': ''
         },
-        changeOrigin: true //虚拟的站点需要更管origin
+        ws: true,
+        changeOrigin: true //虚拟的站点需要更管origin/开启跨域
       }
     }
   },
