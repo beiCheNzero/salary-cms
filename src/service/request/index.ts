@@ -29,6 +29,10 @@ class LJLRequest {
     //? 如果传过来的showLoading参数为null/undefined,那么就取默认loading的值(true)
     this.showLoading = config.showLoading ?? DEFAULT_LOADING
 
+    this.setupInterceptor()
+  }
+
+  setupInterceptor(): void {
     // 开始使用拦截器
     // 从config中取出的拦截器是对应的实例的拦截器
     this.instance.interceptors.request.use(
@@ -46,10 +50,12 @@ class LJLRequest {
       (config) => {
         // console.log('所有的实例都有的：请求成功拦截')
         // 判断是否显示loading请求加载界面
+        // console.log('请求拦截')
         if (this.showLoading) {
           this.isLoading = ElLoading.service({
             lock: true,
             text: 'Loading',
+            spinner: 'el-icon-loading',
             background: 'rgba(0, 0, 0, 0.7)'
           })
         }
@@ -60,6 +66,7 @@ class LJLRequest {
         return err
       }
     )
+    // 响应拦截
     this.instance.interceptors.response.use(
       (res) => {
         // console.log('所有的实例都有的：响应成功拦截')
@@ -77,7 +84,7 @@ class LJLRequest {
         } else if (data.code === '') {
           console.log('return为空')
         } else {
-          return res.data
+          return data
         }
       },
       (err) => {
@@ -95,12 +102,16 @@ class LJLRequest {
    * 需要传入LJLRequestConfig类型
    */
   request<T>(config: LJLRequestConfig<T>): Promise<T> {
+    if (!config.showLoading) {
+      this.showLoading = false
+    }
+
     return new Promise((resolve, reject) => {
       // 因为在class LJLRequest中的interceptor是一个可选链
       // 1.单个请求对config的处理
-      if (config.interceptors?.requestInterceptor) {
-        config = config.interceptors.requestInterceptor(config)
-      }
+      // if (config.interceptors?.requestInterceptor) {
+      //   config = config.interceptors.requestInterceptor(config)
+      // }
 
       // 2.是否需要显示loading
       // 如果LJLRequestConfig传过来的showLoading是false就把false的值给到showLoading
@@ -122,6 +133,7 @@ class LJLRequest {
           // 这里如果不设置的话，在第一次请求会有加载特效
           // 而后的每一次请求showLoading都是false，不会加载特效
           this.showLoading = DEFAULT_LOADING
+          // console.log(this.showLoading)
 
           // 3.将结果resolve返回出来
           resolve(res)

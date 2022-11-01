@@ -1,27 +1,48 @@
 <template>
   <div class="main">
     <el-container class="main-content">
-      <el-aside width="180px">
-        <NavMenu />
+      <el-aside :width="isCollapse ? '60px' : '180px'">
+        <NavMenu :isCollapse="isCollapse" @activeNameChange="handleActiveNameChange" />
       </el-aside>
       <el-container class="page">
-        <el-header class="page-header">Header</el-header>
-        <el-main class="page-content">Main</el-main>
+        <el-header class="page-header">
+          <NavHeader @foldChange="handleFoldChange" :isActiveName="isActiveName" />
+        </el-header>
+        <el-main class="page-content">
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import NavMenu from '@/components/nav-menu'
+import NavHeader from '@/components/nav-header'
 
 export default defineComponent({
   components: {
-    NavMenu
+    NavMenu,
+    NavHeader
   },
   setup() {
-    return {}
+    const isCollapse = ref(false)
+    const handleFoldChange = (isFlod: boolean) => {
+      isCollapse.value = isFlod
+    }
+
+    const isActiveName = ref(0)
+    const handleActiveNameChange = (name: number) => {
+      isActiveName.value = name
+    }
+
+    return {
+      handleFoldChange,
+      isCollapse,
+      handleActiveNameChange,
+      isActiveName
+    }
   }
 })
 </script>
@@ -58,7 +79,7 @@ export default defineComponent({
 }
 
 .el-header {
-  height: 48px !important;
+  height: 88px !important;
 }
 
 .el-aside {

@@ -10,8 +10,8 @@ export const rules = {
       trigger: 'blur'
     },
     {
-      pattern: /^[a-z0-9]{3,}$/,
-      message: '用户名为5-10位的数字字母',
+      pattern: /^[a-z0-9]{2,}$/,
+      message: '用户名为2-10位的数字字母',
       trigger: 'blur'
     }
   ],

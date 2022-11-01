@@ -16,7 +16,12 @@ import 'element-plus/theme-chalk/el-message.css'
 // 导入图标
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
+import { globalRegister } from '@/global'
+
 const app = createApp(App)
+
+// 注册全局的方法
+app.use(globalRegister)
 
 // 通过遍历的方式注册所有 svg组件，会牺牲一点点性能
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

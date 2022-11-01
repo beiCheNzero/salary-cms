@@ -19,8 +19,10 @@
       "@/*": ["src/*"],
       "components/*": ["src/components/*"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    // 设置any[]不能作为引用类型
+    // "suppressImplicitAnyIndexErrors": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx", "src/vuex.d.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx", "src/vuex.d.ts", "src/base-ui/form/types"],
+  "exclude": ["node_modules", "dist"]
 }
