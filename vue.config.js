@@ -46,5 +46,13 @@ module.exports = defineConfig({
       })
     ]
   },
-  transpileDependencies: true
+  transpileDependencies: true,
+  css: {
+    extract:
+      process.env.NODE_ENV === 'production'
+        ? {
+            ignoreOrder: true
+          }
+        : false
+  }
 })
