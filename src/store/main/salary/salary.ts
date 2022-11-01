@@ -3,10 +3,10 @@ import { Module } from 'vuex'
 import { ISalaryState } from './types'
 
 import {
-  getPageListData,
-  deletePageData,
-  createPageData,
-  editPageData
+  getPageListData
+  // deletePageData,
+  // createPageData,
+  // editPageData
 } from '@/service/main/system/system'
 
 const salaryModule: Module<ISalaryState, IRootState> = {

@@ -1,6 +1,6 @@
 // 类具有更强的封装性
 class LocalCache {
-  setCache(key: string, value: any, isLocalStorage?: boolean) {
+  setCache(key: string, value: any) {
     // 因为setItem接收的value是一个string类型
     // 而我们所传入的可能是一个数组，对象等，所以将value转成string类型
     window.localStorage.setItem(key, JSON.stringify(value))

@@ -159,9 +159,9 @@ export default defineComponent({
     // const userCount = computed(() => store.state.system.userCount)
 
     // 获取选中列的数据
-    const handleIndexRowList = (value: any) => {
-      // console.log(value)
-    }
+    // const handleIndexRowList = (value: any) => {
+    //   // console.log(value)
+    // }
 
     // 获取其他动态插槽的名称
     const otherPropSlots = props.contentTableConfig.propList.filter((item: any) => {
@@ -198,7 +198,6 @@ export default defineComponent({
       dataCount,
       pageInfo,
       getPageData,
-      handleIndexRowList,
       otherPropSlots,
       isCreate,
       isUpdate,
