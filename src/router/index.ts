@@ -12,12 +12,12 @@ const routes: RouteRecordRaw[] = [
     path: '/login',
     name: 'login',
     // 这里是懒加载的方式， () => import('url')
-    component: () => import('@/views/login/login.vue')
+    component: () => import('../../src/views/login/login.vue')
   },
   {
     path: '/main',
     name: 'main',
-    component: () => import('@/views/main/main.vue')
+    component: () => import('../../src/views/main/main.vue')
   },
   {
     // 当用户进入没有定义过的路由就会出现404notfound界面
