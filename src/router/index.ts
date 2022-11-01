@@ -43,9 +43,6 @@ router.beforeEach((to) => {
     }
   }
 
-  // console.log(router.getRoutes())
-  // console.log(to)
-
   // 当跳转到main界面时，重定向到所展示界面的第一个菜单的第一个选项
   if (to.path === '/main') {
     return firstMenu.url
