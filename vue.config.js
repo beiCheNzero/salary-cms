@@ -8,7 +8,7 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 module.exports = defineConfig({
   // lintOnSave: false,
   // transpileDependencies: true,
-  outputDir: './build',
+  // outputDir: './build',
   /*
    * 配置浏览器跨域问题
    */
@@ -45,5 +45,6 @@ module.exports = defineConfig({
         resolvers: [ElementPlusResolver()]
       })
     ]
-  }
+  },
+  transpileDependencies: true
 })
