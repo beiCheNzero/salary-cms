@@ -1,9 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import LocalCache from '@/utils/cache'
-import { firstMenu } from '@/utils/map-menus'
+// type表示这里引入的是一个类型，而不是函数或方法
 import type { RouteRecordRaw } from 'vue-router'
-const LOGIN = () => import('../../src/views/login/login.vue')
-const MAIN = () => import('../../src/views/main/main.vue')
+
+import localCatch from '@/utils/cache'
+import { firstMenu } from '@/utils/map-menus'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -13,36 +13,40 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    component: LOGIN
+    // 这里是懒加载的方式， () => import('url')
+    component: () => import('@/views/login/login.vue')
   },
   {
     path: '/main',
     name: 'main',
-    component: MAIN
+    component: () => import('@/views/main/main.vue')
   },
   {
     path: '/:pathMatch(.*)*',
-    name: 'notFound',
+    name: 'not-found',
     component: () => import('@/views/not-found/not-found.vue')
   }
 ]
 
 const router = createRouter({
-  // history: createWebHistory(process.env.BASE_URL),
   routes,
   history: createWebHashHistory()
 })
 
-// 路由守卫
+// 导航守卫
 router.beforeEach((to) => {
-  // 不是去登录界面
+  // 不是登录页的时候
   if (to.path !== '/login') {
-    const token = LocalCache.getCache('token')
-    // 且没有token 就跳转到登录页
+    const token = localCatch.getCatch('token')
     if (!token) {
       return '/login'
     }
   }
+
+  // console.log(router.getRoutes())
+  // console.log(to)
+
+  // 当跳转到main界面时，重定向到所展示界面的第一个菜单的第一个选项
   if (to.path === '/main') {
     return firstMenu.url
   }
