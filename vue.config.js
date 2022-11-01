@@ -1,4 +1,4 @@
-const path = require('path')
+// const path = require('path')
 const { defineConfig } = require('@vue/cli-service')
 const AutoImport = require('unplugin-auto-import/webpack')
 // 引入自动引入插件

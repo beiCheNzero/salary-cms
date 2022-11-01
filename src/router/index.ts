@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import LocalCache from '@/utils/cache'
 import { firstMenu } from '@/utils/map-menus'
+import type { RouteRecordRaw } from 'vue-router'
 
-const routes: Array<RouteRecordRaw> = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: '/main'
@@ -10,6 +11,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
+    // 这里是懒加载的方式， () => import('url')
     component: () => import('@/views/login/login.vue')
   },
   {
