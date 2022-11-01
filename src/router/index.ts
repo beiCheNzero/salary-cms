@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import LocalCache from '@/utils/cache'
 import { firstMenu } from '@/utils/map-menus'
 import type { RouteRecordRaw } from 'vue-router'
@@ -11,6 +11,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
+    // 这里是懒加载的方式， () => import('url')
     component: () => import('@/views/login/login.vue')
   },
   {
@@ -19,7 +20,6 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/main/main.vue')
   },
   {
-    // 当用户进入没有定义过的路由就会出现404notfound界面
     path: '/:pathMatch(.*)*',
     name: 'notFound',
     component: () => import('@/views/not-found/not-found.vue')
@@ -29,7 +29,7 @@ const routes: RouteRecordRaw[] = [
 const router = createRouter({
   // history: createWebHistory(process.env.BASE_URL),
   routes,
-  history: createWebHistory()
+  history: createWebHashHistory()
 })
 
 // 路由守卫
