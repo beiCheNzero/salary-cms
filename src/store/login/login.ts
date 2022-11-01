@@ -72,16 +72,6 @@ const loginModule: Module<ILoginState, IRootState> = {
       //? 发送初始化请求(完整的role/dep)
       //? 调用根里面的action
       dispatch('getInitialDataAction', null, { root: true })
-      // 将第一个菜单存入menuList中
-      const menuList: any[] = []
-      menuList.push({
-        title: firstMenu.menu_name,
-        name: firstMenu.menu_id,
-        content: firstMenu.url
-      })
-      console.log(menuList)
-      dispatch('getCurrentNavTab', menuList, { root: true })
-      LocalCache.setCache('menuList', menuList)
 
       // 2.请求用户信息
       const userInfoRes = await getUserInfoRequest(emp_id)
@@ -97,6 +87,18 @@ const loginModule: Module<ILoginState, IRootState> = {
       // console.log(userMenus)
       commit('changeUserMenus', userMenus)
       LocalCache.setCache('userMenus', userMenus)
+
+      // 将第一个菜单存入menuList中
+      const menuList: any[] = []
+      console.log(firstMenu)
+      menuList.push({
+        title: firstMenu.menu_name,
+        name: firstMenu.menu_id,
+        content: firstMenu.url
+      })
+      console.log(menuList)
+      dispatch('getCurrentNavTab', menuList, { root: true })
+      LocalCache.setCache('menuList', menuList)
 
       // 4.跳到首页
       /*

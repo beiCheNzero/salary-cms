@@ -1,4 +1,5 @@
 // const path = require('path')
+
 const { defineConfig } = require('@vue/cli-service')
 const AutoImport = require('unplugin-auto-import/webpack')
 // 引入自动引入插件
@@ -6,8 +7,6 @@ const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 module.exports = defineConfig({
-  // lintOnSave: false,
-  // transpileDependencies: true,
   // outputDir: './build',
   /*
    * 配置浏览器跨域问题
